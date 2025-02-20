@@ -52,7 +52,7 @@
                     @click.away="open = false"
                     class="absolute right-0 mt-2 bg-white border rounded-md shadow-lg w-48 py-2 z-50"
                 >
-                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Admin Register</a>
+                    <a href="{{ route('admin.register') }}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Admin Register</a>
                     <a href="{{ route('employee.register') }}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition">Employee Register</a>
                 </div>
             </div>

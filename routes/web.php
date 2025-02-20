@@ -41,6 +41,9 @@ Route::group(['prefix' => 'admin'], function() {
 Route::group(['middleware' => 'admin.auth'], function(){
     Route::get('/employee/account/register', [EmployeeLoginController::class, 'register'])->name('employee.register');
     Route::post('/employee/account/register-create', [EmployeeLoginController::class, 'employeeRegister'])->name('employee.createRegister');
+
+    Route::get('/admin/account/register', [AdminLoginController::class, 'register'])->name('admin.register');
+    Route::post('/admin/account/register-create', [AdminLoginController::class, 'adminRegister'])->name('admin.createRegister');
 });
 
 

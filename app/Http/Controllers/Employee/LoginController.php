@@ -21,7 +21,7 @@ class LoginController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed',
+            'password' => 'required|confirmed|min:8',
             'password_confirmation' => 'required'
         ]);
 
