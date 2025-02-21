@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Validator;
 class LoginController extends Controller
 {
     public function index() {
+        if (Auth::guard('admin')->check()) {
+            return redirect()->route('admin.home');
+        }
         return view('auth.employee.login');
     }
     public function register() {
