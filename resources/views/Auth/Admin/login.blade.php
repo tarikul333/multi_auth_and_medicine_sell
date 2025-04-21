@@ -1,4 +1,8 @@
-<x-layout>
+<x-layout.muster>
+    <x-slot:title>
+        Admin Login
+    </x-slot:title>
+
     <div class="bg-gray-100 flex items-center justify-center min-h-screen">
         <div class="bg-white p-8 rounded-lg shadow-md w-96">
             <h2 class="text-2xl font-bold text-center mb-6">Admin Login</h2>
@@ -46,4 +50,4 @@
             </div>
         </div>
     </div>
-</x-layout>
+</x-layout.muster>

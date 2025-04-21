@@ -11,13 +11,15 @@ use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
-    public function index() {
+    public function index() 
+    {
         if (Auth::check()) {
             return redirect()->route('employee.home');
         }
         return view('auth.admin.login');
     }
-    public function authenticate(Request $request) {
+    public function authenticate(Request $request) 
+    {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
@@ -39,10 +41,12 @@ class LoginController extends Controller
             return redirect()->route('admin.login')->withInput()->withErrors($validator);
         }
     }
-    public function register() {
+    public function register() 
+    {
         return view('auth.admin.register');
     }
-    public function adminRegister(Request $request) {
+    public function adminRegister(Request $request) 
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:users',
@@ -65,7 +69,8 @@ class LoginController extends Controller
             return redirect()->route('admin.register')->withInput()->withErrors($validator);
         }
     }
-    public function logout() {
+    public function logout() 
+    {
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
     }

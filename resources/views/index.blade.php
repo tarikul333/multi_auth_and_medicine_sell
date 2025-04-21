@@ -1,4 +1,8 @@
-<x-layout>
+<x-layout.muster>
+    <x-slot:title>
+        Home
+    </x-slot:title>
+    
     <header class="bg-blue-600 text-white p-4 flex justify-between items-center">
         <div class="text-lg font-bold">Medicine Info</div>
         <div class="flex space-x-4">
@@ -37,4 +41,4 @@
             </div>
         </div>
     </div>
-</x-layout>
+</x-layout.muster>
