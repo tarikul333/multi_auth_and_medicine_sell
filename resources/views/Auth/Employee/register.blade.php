@@ -76,7 +76,7 @@
                     </button>
                     <a href="{{ route('admin.home') }}" 
                     class="w-3/12 bg-red-600 text-white text-center font-semibold py-2 rounded-md hover:bg-red-800 transition duration-200">
-                    Cancel</a>
+                    Back</a>
                 </div>
             </form>
         </div>

@@ -70,6 +70,6 @@ class LoginController extends Controller
     public function logout() 
     {
         Auth::logout(); 
-        return redirect()->route('employee.login');   
+        return redirect()->route('home');   
     }
 }

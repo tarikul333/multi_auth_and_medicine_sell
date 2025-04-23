@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
-use App\Models\employee_salles;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
@@ -12,8 +13,9 @@ class EmployeeController extends Controller
     {
         return view('employee.home');
     }
-    public function sellesList() 
+    public function ordersList() 
     {
-        return view('employee.sellesList');
+        $orders = Order::where('user_id', Auth()->id())->with(['city', 'store'])->latest()->get();
+        return view('employee.orders.ordersList', compact('orders'));
     }
 }

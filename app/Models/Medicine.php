@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Medicine extends Model
 {
-    /** @use HasFactory<\Database\Factories\MedicineFactory> */
     use HasFactory;
+
+    protected $fillable = ['medicine_name', 'price', 'expiry_date'];
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

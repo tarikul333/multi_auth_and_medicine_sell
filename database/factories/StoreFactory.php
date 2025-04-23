@@ -17,8 +17,10 @@ class StoreFactory extends Factory
     public function definition(): array
     {
         return [
+            'city_id' => fake()->numberBetween(1,10),
             'store_name' => fake()->company(),
-            'city' => fake()->city(),
+            'address' => fake()->city(),
+            'contact_number' => fake()->phoneNumber(),
         ];
     }
 }
