@@ -5,7 +5,7 @@
             <div class="text-2xl font-bold mb-8">Admin</div>
             <div class="flex flex-col space-y-4">
                 <x-ui.nav-link href="{{ route('admin.home') }}" :active="request()->routeIs('admin.home')">Home</x-ui.nav-link>
-                <x-ui.nav-link href="#" class="hover:underline">Manage Users</x-ui.nav-link>
+                <x-ui.nav-link href="{{ route('employees.details') }}" class="hover:underline">Employees</x-ui.nav-link>
                 <x-ui.nav-link href="#" class="hover:underline">Settings</x-ui.nav-link>
             </div>
         </div>

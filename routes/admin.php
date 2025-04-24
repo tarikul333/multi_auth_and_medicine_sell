@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\Employee\LoginController as EmployeeLoginController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,11 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::group(['middleware' => 'admin.auth'], function() {
         Route::get('/home', [AdminController::class, 'index'])->name('admin.home');
+
+        Route::get('/employees-details', [EmployeeController::class, 'index'])->name('employees.details');
+        Route::get('/employee/{id}/sales', [EmployeeController::class, 'show'])->name('show.sales');
+        Route::get('/order/invoice/{id}', [EmployeeController::class, 'invoice'])->name('show.invoice');
+
         Route::post('/account/logout', [AdminLoginController::class, 'logout'])->name('admin.logout'); 
     });
 

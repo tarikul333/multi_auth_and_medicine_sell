@@ -3,6 +3,8 @@
         Store
     </x-slot:title>
 
+    
+
     <div class="max-w-6xl mx-auto py-10 px-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <a href="{{ route('create.store') }}" class="bg-blue-600 hover:bg-blue-700 text-white p-6 rounded-xl shadow-md transition duration-300">
