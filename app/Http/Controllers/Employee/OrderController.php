@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use App\Models\City;
 use Illuminate\Http\Request;
 use App\Models\Store;
@@ -20,12 +21,15 @@ class OrderController extends Controller
         return view('employee.orders.create', compact('cities', 'medicines'));
     }
 
-
-    // Get stores based on selected city (AJAX request)
-    public function getStores($city_id)
+    public function getAddressesByCity($city_id)
     {
-        $stores = Store::where('city_id', $city_id)->get();
+        $addresses = Address::where('city_id', $city_id)->get();
+        return response()->json($addresses);
+    }
 
+    public function getStoresByAddress($address_id)
+    {
+        $stores = Store::where('address_id', $address_id)->get();
         return response()->json($stores);
     }
 
@@ -33,19 +37,22 @@ class OrderController extends Controller
     {
         $request->validate([
             'city_id' => 'required|exists:cities,id',
+            'address_id' => 'required|exists:addresses,id',
             'store_id' => 'required|exists:stores,id',
             'medicines' => 'required|array|min:1',
             'medicines.*.medicine_id' => 'required|exists:medicines,id',
             'medicines.*.quantity' => 'required|integer|min:1',
         ]);
+        
 
         $order = Order::create([
-            'city_id' => $request->city_id,
+            'address_id' => $request->address_id,
             'store_id' => $request->store_id,
             'user_id' => auth()->id(),
             'order_date' => now(),
-            'total_amount' => '0',
+            'total_amount' => 0,
         ]);
+        
 
         $grandTotal = 0;
 
@@ -69,12 +76,12 @@ class OrderController extends Controller
             'total_amount' => $grandTotal,
         ]);
 
-        return redirect()->route('order.invoice', $order->id)->with('success', 'Order created successfully!');
+        return redirect()->route('order.invoice', $order->id);
     }
 
     public function invoice($id)
     {
-        $order = Order::with(['city', 'store', 'user', 'orderItems.medicine'])->findOrFail($id);
+        $order = Order::with(['address', 'address.city', 'store', 'user', 'orderItems.medicine'])->findOrFail($id);
         return view('employee.orders.invoice', compact('order'));
     }
 }

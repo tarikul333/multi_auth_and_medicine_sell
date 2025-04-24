@@ -16,7 +16,7 @@ class OrderSeeder extends Seeder
         foreach ($stores as $store) {
             Order::create([
                 'user_id' => '2',
-                'city_id' => rand(1,10),
+                'address_id' => rand(1,10),
                 'store_id' => $store->id,
                 'order_date' => now(),
             ]);

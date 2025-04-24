@@ -9,7 +9,7 @@ class Store extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['store_name', 'city_id', 'address', 'contact_number'];
+    protected $fillable = ['store_name', 'address_id', 'contact_number'];
 
     public function city()
     {
@@ -19,5 +19,10 @@ class Store extends Model
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
     }
 }

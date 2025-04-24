@@ -20,7 +20,7 @@
                         <tr class="hover:bg-gray-200 transition cursor-pointer" onclick="window.location='{{ route('order.invoice', $order->id) }}'">
                             <td class="border-b py-3 px-6 text-center text-gray-800">{{ $key + 1 }}</td>
                             <td class="border-b py-3 px-6 text-center text-gray-800">{{ $order->store->store_name }}</td>
-                            <td class="border-b py-3 px-6 text-center text-gray-800">{{ $order->city->city_name }}</td>
+                            <td class="border-b py-3 px-6 text-center text-gray-800">{{ $order->address->street }}</td>
                             <td class="border-b py-3 px-6 text-center text-gray-800">৳{{ number_format($order->total_amount, 2) }}</td>
                             <td class="border-b py-3 px-6 text-center text-gray-800">{{ \Carbon\Carbon::parse($order->order_date)->format('d M Y') }}</td>
                         </tr>

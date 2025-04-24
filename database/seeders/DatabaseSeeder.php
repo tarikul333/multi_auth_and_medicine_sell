@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Address;
 use App\Models\City;
 use App\Models\Medicine;
 use App\Models\Store;
@@ -28,7 +29,8 @@ class DatabaseSeeder extends Seeder
         ]);
         
         City::factory()->count(10)->create();
-        Store::factory()->count(100)->create();
+        Address::factory()->count(100)->create();
+        Store::factory()->count(250)->create();
         Medicine::factory()->count(50)->create();
     }
 }

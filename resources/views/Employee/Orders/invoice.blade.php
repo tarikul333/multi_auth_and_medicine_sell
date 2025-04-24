@@ -17,7 +17,8 @@
         <div class="grid grid-cols-2 text-sm text-gray-700 mb-6">
             <div>
                 <p><strong>Date :</strong> {{ $order->created_at->format('d M Y') }}</p>
-                <p><strong>Address :</strong> {{ $order->city->city_name }}</p>
+                <p><strong>City :</strong> {{ $order->address->city->city_name }}</p>
+                <p><strong>Address :</strong> {{ $order->address->street }}</p>
                 <p><strong>Store Name :</strong> {{ $order->store->store_name }}</p>
             </div>
             <div>

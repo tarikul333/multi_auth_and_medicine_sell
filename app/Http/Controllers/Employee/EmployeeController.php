@@ -15,7 +15,7 @@ class EmployeeController extends Controller
     }
     public function ordersList() 
     {
-        $orders = Order::where('user_id', Auth()->id())->with(['city', 'store'])->latest()->get();
+        $orders = Order::where('user_id', Auth()->id())->with(['address', 'store'])->latest()->get();
         return view('employee.orders.ordersList', compact('orders'));
     }
 }

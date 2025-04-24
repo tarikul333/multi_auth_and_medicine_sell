@@ -7,6 +7,7 @@
                 <x-ui.nav-link href="{{ route('employee.home') }}" :active="request()->routeIs('employee.home')">Home</x-ui.nav-link>
                 <x-ui.nav-link href="{{ route('employee.ordersList') }}" :active="request()->routeIs('employee.ordersList')">Order List</x-ui.nav-link>
                 <x-ui.nav-link href="{{ route('order.create') }}" :active="request()->routeIs('order.create')">Order</x-ui.nav-link>
+                <x-ui.nav-link href="{{ route('stores.index') }}" :active="request()->routeIs('stores.index')">Store</x-ui.nav-link>
             </div>
         </div>
 

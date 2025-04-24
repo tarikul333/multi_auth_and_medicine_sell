@@ -12,7 +12,28 @@ $(document).ready(function() {
         let cityID = $(this).val();
         if (cityID) {
             $.ajax({
-                url: '/employee/get-stores/' + cityID,
+                url: '/employee/get-addresses/' + cityID,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    $('#address').empty().append('<option value="">Select Address</option>');
+                    $('#store').empty().append('<option value="">Select Store</option>');
+                    $.each(data, function(key, value) {
+                        $('#address').append('<option value="'+ value.id +'">'+ value.street +'</option>');
+                    });
+                }
+            });
+        } else {
+            $('#address').empty().append('<option value="">Select Address</option>');
+            $('#store').empty().append('<option value="">Select Store</option>');
+        }
+    });
+
+    $('#address').change(function() {
+        let addressID = $(this).val();
+        if (addressID) {
+            $.ajax({
+                url: '/employee/get-stores-by-address/' + addressID,
                 type: "GET",
                 dataType: "json",
                 success: function(data) {
@@ -56,11 +77,10 @@ $(document).ready(function() {
                     </div>
                 </div>
             </div>`;
-        
+
         $('#medicine-list').append(html);
         index++;
     });
-
 
     $(document).on('click', '.remove-medicine', function() {
         $(this).closest('.medicine-item').fadeOut(300, function() {
@@ -68,5 +88,3 @@ $(document).ready(function() {
         });
     });
 });
-
-

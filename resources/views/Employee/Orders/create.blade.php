@@ -9,25 +9,45 @@
         <form method="POST" action="{{ route('order.store') }}" class="space-y-6">
             @csrf
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- City -->
                 <div class="space-y-2">
-                    <label for="city" class="block text-sm font-medium text-gray-700 border-xl">City</label>
-                    <select id="city" name="city_id" required class="select-custom mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 pl-2">
+                    <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                    <select id="city" name="city_id" required class="select-custom">
                         <option value="">Select City</option>
                         @foreach($cities as $city)
                             <option value="{{ $city->id }}">{{ $city->city_name }}</option>
                         @endforeach
                     </select>
+                    @error('city_id')
+                        <p class="mb-4 p-3 text-sm text-red-700 bg-red-100 border border-red-400 rounded-lg mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
+                <!-- Address -->
                 <div class="space-y-2">
-                    <label for="store" class="block text-sm font-medium text-gray-700 border-xl">Store</label>
-                    <select id="store" name="store_id" required class="select-custom mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 pl-2">
+                    <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                    <select id="address" name="address_id" required class="select-custom">
+                        <option value="">Select Address</option>
+                    </select>
+                    @error('address_id')
+                        <p class="mb-4 p-3 text-sm text-red-700 bg-red-100 border border-red-400 rounded-lg mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Store -->
+                <div class="space-y-2">
+                    <label for="store" class="block text-sm font-medium text-gray-700">Store</label>
+                    <select id="store" name="store_id" required class="select-custom">
                         <option value="">Select Store</option>
                     </select>
+                    @error('store_id')
+                        <p class="mb-4 p-3 text-sm text-red-700 bg-red-100 border border-red-400 rounded-lg mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
 
+            <!-- Medicine Order Section -->
             <div class="mt-8">
                 <div class="flex items-center mb-4">
                     <h3 class="text-xl font-semibold text-gray-800">Order Medicines</h3>
@@ -62,23 +82,18 @@
             </div>
 
             <div class="mt-8 flex justify-between">
-                <button type="button" id="add-medicine" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                    <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                    </svg>
-                    Add Medicine
+                <button type="button" id="add-medicine" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-200">
+                    ➕ Add Medicine
                 </button>
-
-                <button type="submit" class="inline-flex items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                    Submit Order
+                <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition duration-200">
+                    ✅ Submit Order
                 </button>
             </div>
+
         </form>
     </div>
 
     <script>
         const medicineOptions = @json($medicines);
     </script>
-
-
 </x-layout.employee>
