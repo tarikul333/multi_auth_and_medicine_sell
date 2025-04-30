@@ -37,6 +37,7 @@ class LoginController extends Controller
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
             $user->role = 'employee';
+            $user->profile_photo = 'profile.jpg';
             $user->save();
 
             return redirect()->route('employee.register')->with('success', 'Register succesfully Created');

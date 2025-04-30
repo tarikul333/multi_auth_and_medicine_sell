@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
+use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\Employee\LoginController as EmployeeLoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,10 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/employees-details', [EmployeeController::class, 'index'])->name('employees.details');
         Route::get('/employee/{id}/sales', [EmployeeController::class, 'show'])->name('show.sales');
         Route::get('/order/invoice/{id}', [EmployeeController::class, 'invoice'])->name('show.invoice');
+
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+        Route::patch('/profile/image/update/{user}', [ProfileController::class, 'imageUpdate'])->name('profile.image.update');
+        Route::patch('/profile/password', action: [ProfileController::class, 'passwordUpdate'])->name('password.update');
 
         Route::post('/account/logout', [AdminLoginController::class, 'logout'])->name('admin.logout'); 
     });

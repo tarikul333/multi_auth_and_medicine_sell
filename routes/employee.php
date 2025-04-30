@@ -3,6 +3,7 @@
 use App\Http\Controllers\Employee\EmployeeController;
 use App\Http\Controllers\Employee\LoginController as EmployeeLoginController;
 use App\Http\Controllers\Employee\OrderController;
+use App\Http\Controllers\Employee\ProfileController;
 use App\Http\Controllers\Employee\StoreController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,10 @@ Route::group(['prefix' => 'employee'], function() {
 
         Route::get('/store/create', [StoreController::class, 'create'])->name('create.store');
         Route::post('/store/create', [StoreController::class, 'store'])->name('store_create.store');
+
+        Route::get('/profile', [ProfileController::class, 'index'])->name('employee.profile');
+        Route::patch('/profile/image/update', [ProfileController::class, 'imageUpdate'])->name('employee.profile.image');
+        Route::patch('/profile/password/update', [ProfileController::class, 'passUpdate'])->name('employee.password.update');
 
         Route::post('logout', [EmployeeLoginController::class, 'logout'])->name('logout'); 
 

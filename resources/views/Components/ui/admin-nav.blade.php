@@ -6,12 +6,21 @@
             <div class="flex flex-col space-y-4">
                 <x-ui.nav-link href="{{ route('admin.home') }}" :active="request()->routeIs('admin.home')">Home</x-ui.nav-link>
                 <x-ui.nav-link href="{{ route('employees.details') }}" class="hover:underline">Employees</x-ui.nav-link>
-                <x-ui.nav-link href="#" class="hover:underline">Settings</x-ui.nav-link>
+                <x-ui.nav-link href="{{ route('profile.index') }}" class="hover:underline">Profile</x-ui.nav-link>
             </div>
         </div>
 
         <div class="space-y-4">
-            <span class="block">Welcome, {{ Auth::guard('admin')->user()->name }}</span>
+            <!-- Profile Picture and Name -->
+            <div class="flex items-center space-x-3">
+                <img src="{{ asset('images/' . (Auth::guard('admin')->user()->profile_photo ?? 'profile.jpg')) }}"
+                     alt="Profile"
+                     class="w-10 h-10 rounded-full object-cover border border-white">
+                <div>
+                    <span class="text-sm font-semibold">{{ Auth::guard('admin')->user()->name }}</span>
+                </div>
+            </div>
+
             <form action="{{ route('admin.logout') }}" method="POST">
                 @csrf
                 <button type="submit" class="bg-red-500 px-3 py-1 rounded hover:bg-red-700 transition w-full text-left">Logout</button>
